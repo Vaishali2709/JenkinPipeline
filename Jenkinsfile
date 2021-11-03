@@ -22,6 +22,12 @@ pipeline {
           }
         }
 
+        stage('TESTBRANCH') {
+          steps {
+            echo 'Test Branches'
+          }
+        }
+
       }
     }
 
