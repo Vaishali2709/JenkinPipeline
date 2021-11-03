@@ -12,6 +12,7 @@ pipeline {
         stage('Test') {
           steps {
             echo 'Testing an application '
+            echo '"Get the driver Path ${chromeDriver}"'
           }
         }
 
@@ -24,5 +25,8 @@ pipeline {
       }
     }
 
+  }
+  environment {
+    chromeDriver = 'C:\\Users\\vaising2\\Downloads\\chromedriver_win32\\chromedriver.exe'
   }
 }
