@@ -16,13 +16,30 @@ pipeline {
           }
         }
 
+        stage('Test Log') {
+          steps {
+            writeFile(file: 'Logtextfile.txt', text: 'This is an automated file ')
+          }
+        }
+
       }
     }
 
     stage('Deploy') {
-      steps {
-        echo 'Deploying'
-        input(message: '"Do you want to deploy"', id: 'OK')
+      parallel {
+        stage('Deploy') {
+          steps {
+            echo 'Deploying'
+            input(message: '"Do you want to deploy"', id: 'OK')
+          }
+        }
+
+        stage('Archive') {
+          steps {
+            archiveArtifacts 'Logtextfile.txt'
+          }
+        }
+
       }
     }
 
